@@ -49,6 +49,40 @@ GROUP BY
 ORDER BY total_searches DESC;
 
 -- most popular food in summer
-
+SELECT
+    week
+FROM
+    main.cleaned_food
+WHERE
+    week NOT LIKE '____-__'
+    OR TRY_CAST(SUBSTRING(week, 6, 2) AS INTEGER) IS NULL;
+   
+--
+SELECT
+    food,
+    SUM(number_searches) AS total_searches
+FROM
+    main.cleaned_food
+WHERE
+    CAST(SUBSTRING(week, 1, 2) AS INTEGER) BETWEEN 22 AND 35
+GROUP BY
+    food
+ORDER BY
+    total_searches DESC
+LIMIT 5;
 
 -- most popular food in winter
+
+SELECT
+    food,
+    SUM(number_searches) AS total_searches
+FROM
+    main.cleaned_food
+WHERE
+    CAST(SUBSTRING(week, 1, 2) AS INTEGER) BETWEEN 48 AND 52
+    OR CAST(SUBSTRING(week, 1, 2) AS INTEGER) BETWEEN 1 AND 8
+GROUP BY
+    food
+ORDER BY
+    total_searches DESC
+LIMIT 5;
