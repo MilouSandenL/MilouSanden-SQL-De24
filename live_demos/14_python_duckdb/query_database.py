@@ -1,4 +1,4 @@
-from database import DatabaseDataFrame
+from database import Database
 from constants import DATABASE_PATH
 
 class QueryDatabase: 
