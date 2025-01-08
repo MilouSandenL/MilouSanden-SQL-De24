@@ -23,8 +23,8 @@ FROM
 
 -- försöker ta bort för många mellanslag
 SELECT
-	REPLACE(TRIM(description), ' ', ''),
-	REPLACE(TRIM(description), '  ', '')
+	REGEXP_REPLACE(TRIM(description), ' +', ' ', 'g'),
+	REGEXP_REPLACE(TRIM(description), ' +', ' ', 'g')
 FROM
 	staging.sql_glossary;
 	
